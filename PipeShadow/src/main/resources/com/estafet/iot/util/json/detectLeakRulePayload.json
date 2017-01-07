@@ -1,0 +1,13 @@
+{
+  "sql": "SELECT state.reported, timestamp() as timestamp FROM '$aws/things/GasPipe/shadow/update/accepted' WHERE state.reported.leakDetected = true",
+  "description": "Register leak from shadow update event in DynamoDB (table LeakHistory)",
+  "actions": [
+    {
+      "lambda": {
+        "functionArn": "arn:aws:lambda:eu-west-1:573802978597:function:shadowLeakDetect"
+      }
+    }
+  ],
+  "awsIotSqlVersion": "2016-03-23",
+  "ruleDisabled": false
+}
